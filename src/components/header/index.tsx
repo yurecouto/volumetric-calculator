@@ -8,7 +8,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function Header() {
 
-  const handleMenu = () => {}
+  const handleMenu = () => {
+    console.log("Alguem clicou")
+  }
 
   return (
     <Container>
@@ -17,7 +19,6 @@ export default function Header() {
       </Left>
 
       <Right>
-        {/* <Icon icon="mingcute:menu-fill" /> */}
         <TouchableOpacity onPress={handleMenu}>
           <MenuFill width={24} height={24} color={colors.LIGHT_TEXT}/>
         </TouchableOpacity>

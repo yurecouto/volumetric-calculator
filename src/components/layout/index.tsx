@@ -1,6 +1,6 @@
 import { View } from 'react-native';
 
-import styles from './style';
+import { Container, SubContainer } from './style';
 import { ReactNode } from 'react';
 import Header from '../header';
 
@@ -12,11 +12,11 @@ export default function Layout({
   children,
   }: Props) {
   return (
-    <View style={styles.container}>
+    <Container>
       <Header/>
-      <View style={styles.subContainer}>
+      <SubContainer>
         {children}
-      </View>
-    </View>
+      </SubContainer>
+    </Container>
   );
 }

@@ -1,12 +1,11 @@
-import { StyleSheet } from "react-native";
+import styled from 'styled-components/native';
+import colors from '../../themes/colors';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default styles
+export const Container = styled.View`
+  width: 100%;
+  background-color: ${colors.BLUE_DEFAULT};
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
