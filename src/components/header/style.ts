@@ -4,7 +4,7 @@ import colors from '../../themes/colors';
 
 export const Container = styled.View`
   width: 100%;
-  height: ${RFValue(72)}px;
+  height: ${RFValue(88)}px;
   padding: ${RFValue(8)}px;
   background-color: ${colors.BLUE_DEFAULT};
   display: flex;
