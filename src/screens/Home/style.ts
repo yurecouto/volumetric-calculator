@@ -24,3 +24,9 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
   },
 });
+
+export const Text = styled.Text`
+  font-size: ${RFValue(20)}px;
+  color: ${colors.DARK_TEXT};
+  font-weight: 500;
+`;

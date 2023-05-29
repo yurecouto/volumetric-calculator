@@ -1,3 +1,6 @@
 {
-  "InitialShapes": "Forma inicial"
+  "InitialShapes": "Forma inicial",
+  "Circular": "Circular",
+  "Triangular": "Triangular",
+  "Rectangular": "Retangular"
 }
