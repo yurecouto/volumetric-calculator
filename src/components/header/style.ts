@@ -2,9 +2,9 @@ import styled from 'styled-components/native';
 import { RFValue } from "react-native-responsive-fontsize";
 import colors from '../../themes/colors';
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   width: 100%;
-  height: ${RFValue(88)}px;
+  height: ${RFValue(72)}px;
   padding: ${RFValue(8)}px;
   background-color: ${colors.BLUE_DEFAULT};
   display: flex;

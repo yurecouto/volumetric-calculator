@@ -1,9 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, UIManager, View } from 'react-native';
 import Router from './src/router/router';
 import "./src/translations/i18n"
 
 export default function App() {
+  if(Platform.OS === 'android') {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+
   return (
     <Router/>
   );
