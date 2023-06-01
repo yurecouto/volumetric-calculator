@@ -21,17 +21,17 @@ export default function Home() {
       svg: <SVG title="circle"/>,
       types: [
         {
-          title: "teste 1",
-          svg: <SVG title="triangle"/>
+          title: t("Sphere"),
+          svg: <SVG title="sphere"/>
         },
         {
-          title: "teste 2",
-          svg: <SVG title="circle"/>
+          title: t("Cylinder"),
+          svg: <SVG title="cylinder"/>
         },
         {
-          title: "teste 3",
-          svg: <SVG title="square"/>
-        }
+          title: t("Cone"),
+          svg: <SVG title="cone"/>
+        },
       ]
     },
     {
@@ -39,17 +39,13 @@ export default function Home() {
       svg: <SVG title="triangle"/>,
       types: [
         {
-          title: "teste 1",
-          svg: <SVG title="triangle"/>
+          title: t("Tetrahedron"),
+          svg: <SVG title="tetrahedron"/>
         },
         {
-          title: "teste 2",
-          svg: <SVG title="circle"/>
+          title: t("Prism"),
+          svg: <SVG title="triangular-prism"/>
         },
-        {
-          title: "teste 3",
-          svg: <SVG title="square"/>
-        }
       ]
     },
     {
@@ -57,17 +53,17 @@ export default function Home() {
       svg: <SVG title="square"/>,
       types: [
         {
-          title: "teste 1",
-          svg: <SVG title="triangle"/>
+          title: t("Cube"),
+          svg: <SVG title="cube"/>
         },
         {
-          title: "teste 2",
-          svg: <SVG title="circle"/>
+          title: t("Pyramid"),
+          svg: <SVG title="pyramid"/>
         },
         {
-          title: "teste 3",
-          svg: <SVG title="square"/>
-        }
+          title: t("Hexahedron"),
+          svg: <SVG title="hexahedron"/>
+        },
       ]
     },
     // {

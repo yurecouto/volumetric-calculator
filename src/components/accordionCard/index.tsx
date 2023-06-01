@@ -27,6 +27,7 @@ export default function AccordionCard({
 
   return (
     <Container>
+
       <Head>
         <Left>
           {svg}

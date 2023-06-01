@@ -2,5 +2,13 @@
   "InitialShapes": "Forma inicial",
   "Circular": "Circular",
   "Triangular": "Triangular",
-  "Rectangular": "Retangular"
+  "Rectangular": "Retangular",
+  "Sphere": "Esfera",
+  "Cylinder": "Cilindro",
+  "Cone": "Cone",
+  "Tetrahedron": "Tetraedro",
+  "Prism": "Prisma",
+  "Cube": "Cubo",
+  "Pyramid": "Pirâmide",
+  "Hexahedron": "Hexaedro"
 }
