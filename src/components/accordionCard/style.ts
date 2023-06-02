@@ -7,7 +7,7 @@ export const Container = styled(View)`
   width: 100%;
   margin-bottom: ${RFValue(16)}px;
   border-radius: ${RFValue(8)}px;
-  background-color: #fff;
+  background-color: ${colors.WHITE};
   elevation: 4;
   shadow-color: #000;
   shadow-opacity: 0.5;

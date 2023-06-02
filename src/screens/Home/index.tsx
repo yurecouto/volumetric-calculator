@@ -17,15 +17,18 @@ export default function Home() {
       types: [
         {
           title: t("Sphere"),
-          svg: <SVG title="sphere"/>
+          svg: <SVG title="sphere"/>,
+          calculator: "Sphere"
         },
         {
           title: t("Cylinder"),
-          svg: <SVG title="cylinder"/>
+          svg: <SVG title="cylinder"/>,
+          calculator: "sphere"
         },
         {
           title: t("Cone"),
-          svg: <SVG title="cone"/>
+          svg: <SVG title="cone"/>,
+          calculator: "sphere"
         },
       ]
     },
@@ -35,11 +38,13 @@ export default function Home() {
       types: [
         {
           title: t("Tetrahedron"),
-          svg: <SVG title="tetrahedron"/>
+          svg: <SVG title="tetrahedron"/>,
+          calculator: "sphere"
         },
         {
           title: t("Prism"),
-          svg: <SVG title="triangular-prism"/>
+          svg: <SVG title="triangular-prism"/>,
+          calculator: "sphere"
         },
       ]
     },
@@ -49,27 +54,22 @@ export default function Home() {
       types: [
         {
           title: t("Cube"),
-          svg: <SVG title="cube"/>
+          svg: <SVG title="cube"/>,
+          calculator: "sphere"
         },
         {
           title: t("Pyramid"),
-          svg: <SVG title="pyramid"/>
+          svg: <SVG title="pyramid"/>,
+          calculator: "sphere"
         },
         {
           title: t("Hexahedron"),
-          svg: <SVG title="hexahedron"/>
+          svg: <SVG title="hexahedron"/>,
+          calculator: "sphere"
         },
       ]
     },
-    // {
-    //   shape: "test 04",
-    // },
-    // {
-    //   shape: "test 05",
-    // }
   ];
-
-  const testeee = [1, 2, 3, 4]
 
   return (
     <Layout>
@@ -81,7 +81,7 @@ export default function Home() {
         <CardContainer>
           {cards.map((card, index) => (
             <AccordionCard
-              key={index}
+              key={index.toString()}
               title={card.shape}
               svg={card.svg}
               options={card.types}

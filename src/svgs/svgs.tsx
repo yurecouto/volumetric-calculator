@@ -41,6 +41,11 @@ export default function SVG({
         <Sphere width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
+    case "sphere-page":
+      return (
+        <Sphere width={128} height={128} color={colors.SECONDARY_BLUE}/>
+      );
+
     case "cylinder":
       return (
         <Cylinder width={56} height={56} color={colors.SECONDARY_BLUE}/>
@@ -103,7 +108,7 @@ export default function SVG({
 
     case "arrow-left":
       return (
-        <ArrowLeft width={24} height={24} color={colors.NOT_TOO_DARK}/>
+        <ArrowLeft width={32} height={32} color={colors.LIGHT_TEXT}/>
       );
 
     default:

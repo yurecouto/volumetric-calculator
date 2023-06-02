@@ -13,7 +13,13 @@ export const Container = styled.SafeAreaView`
   justify-content: space-between;
 `;
 
-export const Left = styled.View``;
+export const Left = styled.View`
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+`;
 
 export const Right = styled.View``;
 

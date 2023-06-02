@@ -6,18 +6,39 @@ import MenuFill from '../../svgs/svgs/menu-fill.svg';
 import colors from '../../themes/colors';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SVG from '../../svgs/svgs';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default function Header() {
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const currentScreen = route.name;
 
   const handleMenu = () => {
     console.log("Alguem clicou")
   }
 
+  const handleGoHome = () => {
+    navigation.navigate("Home" as never)
+  }
+
   return (
     <Container>
-      <Left>
-        <Text>Volume Wizard</Text>
-      </Left>
+      {currentScreen !== "Home" ? (
+        <TouchableOpacity onPress={handleGoHome}>
+          <Left>
+            <SVG title={"arrow-left"}/>
+            <Text>Volume Wizard</Text>
+          </Left>
+        </TouchableOpacity>
+      ) : (
+        <Left>
+          {currentScreen !== "Home" && (
+            <SVG title={"arrow-left"}/>
+          )}
+          <Text>Volume Wizard</Text>
+        </Left>
+      )}
 
       <Right>
         <TouchableOpacity onPress={handleMenu}>
