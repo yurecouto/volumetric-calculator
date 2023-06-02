@@ -1,5 +1,5 @@
 import { LayoutAnimation, Text } from 'react-native';
-import {  Childreen, Container, Head, Left, Option, Right, Title } from './style';
+import {  Childreen, Container, Head, Left, Option, OptionLine, Right, Title } from './style';
 import { useState } from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SVG from '../../svgs/svgs';
@@ -40,17 +40,26 @@ export default function AccordionCard({
         </TouchableOpacity>
       </Head>
 
-      {isOpen && (<Childreen>
-        {options.map((option) => (
-          <Option key={option.title}>
-            <Left>
-              {option.svg}
-              <Title>{option.title}</Title>
-            </Left>
-            <Right/>
-          </Option>
-        ))}
-      </Childreen>)}
+      {isOpen && (
+        <Childreen>
+          {options.map((option, index) => (
+            <>
+              <OptionLine/>
+              <Option key={index}>
+                <Left>
+                  {option.svg}
+                  <Title>{option.title}</Title>
+                </Left>
+                <TouchableOpacity onPress={toggleOpen}>
+                  <Right>
+                    <SVG title={"arrow-right"}/>
+                  </Right>
+                </TouchableOpacity>
+              </Option>
+            </>
+          ))}
+        </Childreen>
+      )}
     </Container>
   );
 }

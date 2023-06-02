@@ -1,4 +1,4 @@
-import { LinearGradient } from 'react-native-svg';
+import { LinearGradient } from "react-native-svg";
 
 import colors from "../themes/colors";
 import MenuFill from "./svgs/menu-fill.svg"
@@ -15,7 +15,8 @@ import TriangularPrism from "./svgs/triangular-prism.svg"
 import Cube from "./svgs/cube.svg"
 import Hexahedron from "./svgs/hexahedron.svg"
 import Pyramid from "./svgs/pyramid.svg"
-import Test from "./svgs/test.svg"
+import ArrowRight from "./svgs/arrowright.svg"
+import ArrowLeft from "./svgs/arrowleft.svg"
 
 interface Props {
   title: string;
@@ -25,74 +26,84 @@ export default function SVG({
   title,
   }: Props) {
   switch (title) {
-    case 'menu':
+    case "menu":
       return (
         <MenuFill width={24} height={24} color={colors.LIGHT_TEXT}/>
       );
 
-    case 'circle':
+    case "circle":
       return (
-        <Circle width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Circle width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'sphere':
+    case "sphere":
       return (
-        <Sphere width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Sphere width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'cylinder':
+    case "cylinder":
       return (
-        <Cylinder width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Cylinder width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'cone':
+    case "cone":
       return (
-        <Cone width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Cone width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'triangle':
+    case "triangle":
       return (
-        <Triangle width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Triangle width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'tetrahedron':
+    case "tetrahedron":
       return (
-        <Tetrahedron width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Tetrahedron width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'triangular-prism':
+    case "triangular-prism":
       return (
-        <TriangularPrism width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <TriangularPrism width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'square':
+    case "square":
       return (
-        <Square width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Square width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'cube':
+    case "cube":
       return (
-        <Cube width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Cube width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'pyramid':
+    case "pyramid":
       return (
-        <Pyramid width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Pyramid width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'hexahedron':
+    case "hexahedron":
       return (
-        <Hexahedron width={56} height={56} color={colors.LIGHT_TEXT}/>
+        <Hexahedron width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
-    case 'arrow-up':
+    case "arrow-up":
       return (
         <ArrowUp width={24} height={24} color={colors.NOT_TOO_DARK}/>
       );
 
-    case 'arrow-down':
+    case "arrow-down":
       return (
         <ArrowDown width={24} height={24} color={colors.NOT_TOO_DARK}/>
+      );
+
+    case "arrow-right":
+      return (
+        <ArrowRight width={24} height={24} color={colors.NOT_TOO_DARK}/>
+      );
+
+    case "arrow-left":
+      return (
+        <ArrowLeft width={24} height={24} color={colors.NOT_TOO_DARK}/>
       );
 
     default:

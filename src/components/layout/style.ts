@@ -10,7 +10,7 @@ export const Container = styled.SafeAreaView`
   justify-content: space-between;
 `;
 
-export const SubContainer = styled.View`
+export const SubContainer = styled.SafeAreaView`
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -29,7 +29,7 @@ export const Left = styled(View)`
 
 export const Right = styled(View)`
   padding-right: ${RFValue(8)}px;
-  width: 80px;
+  width: 120px;
   height: 80px;
   display: flex;
   flex-direction: row;
@@ -67,4 +67,10 @@ export const Option = styled(View)`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const OptionLine = styled(View)`
+  width: 100%;
+  height: ${RFValue(0.8)}px;
+  background-color: ${colors.NOT_TOO_DARK};
 `;

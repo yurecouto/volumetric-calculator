@@ -6,7 +6,7 @@ export const Container = styled.SafeAreaView`
   width: 100%;
   height: ${RFValue(72)}px;
   padding: ${RFValue(8)}px;
-  background-color: ${colors.BLUE_DEFAULT};
+  background-color: ${colors.PRIMARY_BLUE};
   display: flex;
   flex-direction: row;
   align-items: flex-end;

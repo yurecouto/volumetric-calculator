@@ -20,6 +20,7 @@ export const TitleContainer = styled.View`
 export const styles = StyleSheet.create({
   scrollContainer: {
     width: "100%",
+    height: "90%",
     display: "flex",
     flexDirection: "column",
   },
