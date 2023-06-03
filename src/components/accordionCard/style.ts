@@ -71,6 +71,6 @@ export const Option = styled(View)`
 
 export const OptionLine = styled(View)`
   width: 100%;
-  height: ${RFValue(0.8)}px;
+  height: ${RFValue(1)}px;
   background-color: ${colors.NOT_TOO_DARK};
 `;

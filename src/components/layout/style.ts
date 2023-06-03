@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { RFValue } from "react-native-responsive-fontsize";
 import colors from '../../themes/colors';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,7 +10,7 @@ export const Container = styled.SafeAreaView`
   justify-content: space-between;
 `;
 
-export const SubContainer = styled.SafeAreaView`
+export const SubContainer = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;

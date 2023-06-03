@@ -5,7 +5,7 @@ import { StyleSheet } from "react-native";
 
 export const Container = styled.View`
   width: 100%;
-  height:  ${RFValue(56)}px;
+  height: ${RFValue(56)}px;
   display: flex;
   justify-content: space-between;
   align-items: center;

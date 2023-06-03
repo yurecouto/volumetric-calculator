@@ -1,0 +1,7 @@
+botao para calcular
+
+colocar box no svg da tela
+
+na box, um botao de info, explicando a tela
+
+testar svg
