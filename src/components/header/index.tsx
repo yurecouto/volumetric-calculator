@@ -8,7 +8,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import SVG from '../../svgs/svgs';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-export default function Header() {
+interface Props {
+  height: number;
+}
+
+export default function Header({
+  height
+  }: Props) {
   const navigation = useNavigation();
   const route = useRoute();
 
@@ -23,7 +29,7 @@ export default function Header() {
   }
 
   return (
-    <Container>
+    <Container height={height}>
       {currentScreen !== "Home" ? (
         <TouchableOpacity onPress={handleGoHome}>
           <Left>

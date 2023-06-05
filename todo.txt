@@ -1,7 +1,3 @@
-botao para calcular
+colocar o box de info dentro do box principal, colocar icone de info, na mesma row do "Medidas"
 
-colocar box no svg da tela
-
-na box, um botao de info, explicando a tela
-
-testar svg
+componentizar a estrutura do sphere e replicar

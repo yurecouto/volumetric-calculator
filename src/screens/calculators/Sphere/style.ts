@@ -1,15 +1,18 @@
 import styled from 'styled-components/native';
 import colors from '../../../themes/colors';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { StyleSheet } from 'react-native';
 
-export const Container = styled.View`
+interface ContainerProps {
+  height?: number;
+}
+
+export const Container = styled.View<ContainerProps>`
   width: 100%;
-  height: 93%;
+  height: ${(props: { height: number; }) => (props.height * 90) / 100}px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: ${RFValue(8)}px;
 `;
 
@@ -25,11 +28,11 @@ export const InputBox = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
 `;
 
-export const InputContainer = styled.View`
+export const SubContainer = styled.View`
   width: 100%;
   background-color: ${colors.WHITE};
   border-radius: ${RFValue(8)}px;
@@ -55,10 +58,22 @@ export const Button = styled.TouchableOpacity`
   margin-top: ${RFValue(16)}px;
 `;
 
-export const Text = styled.Text`
+export const ButtonText = styled.Text`
   font-size: ${RFValue(24)}px;
   color: ${colors.LIGHT_TEXT};
   font-weight: 600;
+`;
+
+export const InfoText = styled.Text`
+  font-size: ${RFValue(16)}px;
+  color: ${colors.DARK_TEXT};
+  text-align: center;
+`;
+
+export const Title = styled.Text`
+  font-size: ${RFValue(20)}px;
+  color: ${colors.DARK_TEXT};
+  text-align: center;
 `;
 
 export const ResultContainer = styled.View`
@@ -76,7 +91,19 @@ export const ResultContainer = styled.View`
 `;
 
 export const InfoContainer = styled.View`
-  width: 60%;
-  height: ${RFValue(200)}px;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const ResultBox = styled.View`
+
+`;
+
+export const InputContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 `;

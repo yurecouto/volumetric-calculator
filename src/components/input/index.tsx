@@ -4,21 +4,26 @@ import SelectDropdown from 'react-native-select-dropdown';
 
 interface Props {
   placeholder: string;
+  value?: string;
+  setValue?: (params: any) => void
 };
 
 const medidasDistancia = [
-  'mm', // milímetros
-  'cm', // centímetros
-  'm', // metros
-  'km', // quilômetros
-  'in', // polegadas
-  'ft', // pés
-  'yd', // jardas
-  'mi', // milhas
+  'mm',
+  'cm',
+  'm',
+  'km',
+  'in',
+  'ft',
+  'yd',
+  'mi',
 ];
 
 export default function Input({
   placeholder,
+  value,
+  setValue,
+
   }: Props) {
 
   return (
@@ -26,6 +31,8 @@ export default function Input({
       <TextInput
         keyboardType="numeric"
         placeholder={placeholder}
+        value={value}
+        onChangeText={setValue}
       />
 
       <SelectDropdown

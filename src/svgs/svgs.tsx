@@ -43,7 +43,7 @@ export default function SVG({
 
     case "sphere-page":
       return (
-        <Sphere width={128} height={128} color={colors.SECONDARY_BLUE}/>
+        <Sphere width={104} height={104} color={colors.SECONDARY_BLUE}/>
       );
 
     case "cylinder":

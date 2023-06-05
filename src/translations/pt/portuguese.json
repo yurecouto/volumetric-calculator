@@ -11,5 +11,6 @@
   "Prism": "Prisma",
   "Cube": "Cubo",
   "Pyramid": "Pirâmide",
-  "Hexahedron": "Hexaedro"
+  "Hexahedron": "Hexaedro",
+  "SphereInfo": "Para calcular o volume de uma esfera, você precisará ter acesso a informações como o raio, o perímetro ou o diâmetro da esfera."
 }
