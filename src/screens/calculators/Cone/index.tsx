@@ -6,12 +6,10 @@ import { areaConversor } from '../../../utils/areaConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
 import { Line } from './style';
 
-export default function Cylinder() {
+export default function Cone() {
   const default1d = "mm";
   const default2d = "mm2";
   const default3d = "mm3";
-
-  const [canCalculate, setCanCalculate] = useState<boolean>(false);
 
   const [rmm, setRmm] = useState<string | undefined>(undefined);
   const [hmm, setHmm] = useState<string | undefined>(undefined);
@@ -31,9 +29,11 @@ export default function Cylinder() {
   const [measureV, setMeasureV] = useState<string>(default3d);
   const [measureOldV, setMeasureOldV] = useState<string>(measureV);
 
+  const [canCalculate, setCanCalculate] = useState<boolean>(amm2 !== undefined && hmm !== undefined);
+
   const calculateByArea = () => {
     if (amm2 && hmm) {
-      const volume = parseFloat(hmm) * parseFloat(amm2)
+      const volume = (parseFloat(hmm) * parseFloat(amm2)) / 3
       setV(volumeConversor(volume, "mm3", measureV).toString())
     }
   };
@@ -93,7 +93,7 @@ export default function Cylinder() {
   }, [p, measureP]);
 
   useEffect(() => {
-    if (amm2 && hmm) {
+    if (amm2 && hmm && !canCalculate) {
       setCanCalculate(value => !value)
     }
   }, [amm2, hmm]);
@@ -108,8 +108,8 @@ export default function Cylinder() {
   return (
     <CalculatorLayout
       calculate={calculateByArea}
-      infoSvg='cylinder-page'
-      infoText='CylinderInfo'
+      infoSvg='cone-page'
+      infoText='ConeInfo'
       setMeasureVolume={setMeasureV}
       measureVolume={default3d}
       canCalculate={canCalculate}

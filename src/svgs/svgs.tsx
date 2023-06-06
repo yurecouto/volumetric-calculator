@@ -71,6 +71,11 @@ export default function SVG({
         <Cone width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
+    case "cone-page":
+      return (
+        <Cone width={(width * 24) / 100} height={(width * 24) / 100} color={colors.SECONDARY_BLUE}/>
+      );
+
     case "triangle":
       return (
         <Triangle width={56} height={56} color={colors.SECONDARY_BLUE}/>

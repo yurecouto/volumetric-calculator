@@ -14,5 +14,6 @@
   "Pyramid": "Pirâmide",
   "Hexahedron": "Hexaedro",
   "SphereInfo": "Para calcular o volume de uma esfera, é necessário apenas uma das seguintes informações: raio, diâmetro, perímetro.",
-  "CylinderInfo": "Para calcular o volume de um cilindro, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura."
+  "CylinderInfo": "Para calcular o volume de um cilindro, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura.",
+  "ConeInfo": "Para calcular o volume de um cone, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura."
 }

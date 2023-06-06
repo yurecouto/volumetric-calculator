@@ -28,7 +28,7 @@ export default function Home() {
         {
           title: t("Cone"),
           svg: <SVG title="cone"/>,
-          calculator: "sphere"
+          calculator: "Cone"
         },
       ]
     },
