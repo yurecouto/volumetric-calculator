@@ -68,6 +68,8 @@ export const InfoText = styled.Text`
   font-size: ${RFValue(16)}px;
   color: ${colors.DARK_TEXT};
   text-align: center;
+  height: 100%;
+  width: 60%;
 `;
 
 export const Title = styled.Text`
@@ -78,6 +80,7 @@ export const Title = styled.Text`
 
 export const ResultContainer = styled.View`
   width: 100%;
+  height: auto;
   background-color: ${colors.WHITE};
   border-radius: ${RFValue(8)}px;
   padding: ${RFValue(8)}px;
@@ -88,13 +91,17 @@ export const ResultContainer = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 16px;
+
 `;
 
 export const InfoContainer = styled.View`
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 16px;
 `;
 
 export const ResultBox = styled.View`

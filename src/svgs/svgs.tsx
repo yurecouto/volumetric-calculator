@@ -17,6 +17,8 @@ import Hexahedron from "./svgs/hexahedron.svg"
 import Pyramid from "./svgs/pyramid.svg"
 import ArrowRight from "./svgs/arrowright.svg"
 import ArrowLeft from "./svgs/arrowleft.svg"
+import Info from "./svgs/info-filled.svg"
+import useScreenSize from "../hooks/screenSize";
 
 interface Props {
   title: string;
@@ -25,10 +27,18 @@ interface Props {
 export default function SVG({
   title,
   }: Props) {
+
+  const { width } = useScreenSize();
+
   switch (title) {
     case "menu":
       return (
         <MenuFill width={24} height={24} color={colors.LIGHT_TEXT}/>
+      );
+
+    case "info":
+      return (
+        <Info width={24} height={24} color={colors.SECONDARY_BLUE}/>
       );
 
     case "circle":
@@ -43,7 +53,7 @@ export default function SVG({
 
     case "sphere-page":
       return (
-        <Sphere width={104} height={104} color={colors.SECONDARY_BLUE}/>
+        <Sphere width={(width * 30) / 100} height={(width * 30) / 100} color={colors.SECONDARY_BLUE}/>
       );
 
     case "cylinder":

@@ -12,5 +12,5 @@
   "Cube": "Cubo",
   "Pyramid": "Pirâmide",
   "Hexahedron": "Hexaedro",
-  "SphereInfo": "Para calcular o volume de uma esfera, você precisará ter acesso a informações como o raio, o perímetro ou o diâmetro da esfera."
+  "SphereInfo": "Para calcular o volume de uma esfera, é necessário apenas uma das seguintes informações: raio, diâmetro, perímetro."
 }
