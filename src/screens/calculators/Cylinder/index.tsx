@@ -2,27 +2,36 @@ import Input from '../../../components/input';
 import { useEffect, useState } from 'react';
 import { volumeConversor } from '../../../utils/volumeConversor';
 import { lengthConversor } from '../../../utils/lengthConversor';
+import { areaConversor } from '../../../utils/areaConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
+import { Line } from './style';
 
-export default function Sphere() {
+export default function Cylinder() {
   const default1d = "mm";
+  const default2d = "mm2";
   const default3d = "mm3";
 
   const [canCalculate, setCanCalculate] = useState<boolean>(false);
 
   const [rmm, setRmm] = useState<string | undefined>(undefined);
+  const [hmm, setHmm] = useState<string | undefined>(undefined);
+  const [amm2, setAmm2] = useState<string | undefined>(undefined);
+  const [h, setH] = useState<string | undefined>(undefined);
+  const [a, setA] = useState<string | undefined>(undefined);
   const [r, setR] = useState<string | undefined>(undefined);
   const [p, setP] = useState<string | undefined>(undefined);
   const [d, setD] = useState<string | undefined>(undefined);
   const [v, setV] = useState<string | undefined>(undefined);
 
+  const [measureH, setMeasureH] = useState<string>(default1d);
+  const [measureA, setMeasureA] = useState<string>(default2d);
   const [measureR, setMeasureR] = useState<string>(default1d);
   const [measureP, setMeasureP] = useState<string>(default1d);
   const [measureD, setMeasureD] = useState<string>(default1d);
   const [measureV, setMeasureV] = useState<string>(default3d);
   const [measureOldV, setMeasureOldV] = useState<string>(measureV);
 
-  const calculateByRmm = () => {
+  const calculateByArea = () => {
     if (rmm) {
       const volume = (4 / 3) * Math.PI * Math.pow(parseFloat(rmm), 3)
       setV(volumeConversor(volume, default3d, measureV).toString())
@@ -30,52 +39,98 @@ export default function Sphere() {
   };
 
   useEffect(() => {
+    if (amm2 !== undefined && measureA) {
+      setA(areaConversor(parseFloat(amm2), "mm2", measureA)?.toString())
+    }
+  }, [measureA]);
+
+  useEffect(() => {
+    if (amm2 !== undefined && measureA) {
+      setA(areaConversor(parseFloat(amm2), "mm2", measureA)?.toString())
+    }
+  }, [amm2]);
+
+  useEffect(() => {
+    if (a !== undefined && measureA) {
+      setAmm2(areaConversor(parseFloat(a), measureA, "mm2")?.toString())
+    }
+  }, [a]);
+
+  useEffect(() => {
+    if (rmm !== undefined && measureA) {
+      setAmm2((Math.PI * (parseFloat(rmm) * parseFloat(rmm))).toString())
+    }
+  }, [rmm]);
+
+  useEffect(() => {
     if (rmm !== undefined) {
       setR(lengthConversor(parseFloat(rmm), "mm", measureR).toString())
     }
-  }, [measureR])
+  }, [measureR]);
 
   useEffect(() => {
     if (r !== undefined) {
       setRmm(lengthConversor(parseFloat(r), measureR, "mm").toString())
     }
-  }, [r, measureR])
+  }, [r, measureR]);
+
+  useEffect(() => {
+    if (h !== undefined) {
+      setHmm(lengthConversor(parseFloat(h), measureH, "mm").toString())
+    }
+  }, [h, measureH]);
 
   useEffect(() => {
     if (d !== undefined) {
       setR(lengthConversor((parseFloat(d) / 2), measureD, measureR).toString())
     }
-  }, [d, measureD])
+  }, [d, measureD]);
 
   useEffect(() => {
     if (p !== undefined) {
       setR(lengthConversor((parseFloat(p) / (2 * Math.PI)), measureP, measureR).toString())
     }
-  }, [p, measureP])
+  }, [p, measureP]);
 
   useEffect(() => {
-    if (!(p === undefined && r === undefined && d === undefined) && !canCalculate) {
+    if (amm2 && hmm) {
       setCanCalculate(value => !value)
     }
-  }, [p, r, d])
+  }, [amm2, hmm]);
 
   useEffect(() => {
     if (v) {
       setV(volumeConversor(parseFloat(v), measureOldV, measureV).toString())
       setMeasureOldV(measureV)
     }
-  }, [measureV])
+  }, [measureV]);
 
   return (
     <CalculatorLayout
-      calculate={calculateByRmm}
-      infoSvg='sphere-page'
-      infoText='SphereInfo'
+      calculate={calculateByArea}
+      infoSvg='cylinder-page'
+      infoText='CylinderInfo'
       setMeasureVolume={setMeasureV}
       measureVolume={default3d}
       canCalculate={canCalculate}
       volume={v}
     >
+      <Input
+        placeholder="Altura"
+        value={h}
+        setValue={setH}
+        measurement={measureH}
+        setMeasurement={setMeasureH}
+      />
+      <Line/>
+      <Input
+        placeholder="Area da Base"
+        value={a}
+        area={true}
+        setValue={setA}
+        measurement={measureA}
+        setMeasurement={setMeasureA}
+      />
       <Input
         placeholder="Raio"
         value={r}
@@ -97,6 +152,7 @@ export default function Sphere() {
         measurement={measureP}
         setMeasurement={setMeasureP}
       />
+      <Line/>
     </CalculatorLayout>
   );
 }

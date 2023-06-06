@@ -53,12 +53,17 @@ export default function SVG({
 
     case "sphere-page":
       return (
-        <Sphere width={(width * 30) / 100} height={(width * 30) / 100} color={colors.SECONDARY_BLUE}/>
+        <Sphere width={(width * 24) / 100} height={(width * 24) / 100} color={colors.SECONDARY_BLUE}/>
       );
 
     case "cylinder":
       return (
         <Cylinder width={56} height={56} color={colors.SECONDARY_BLUE}/>
+      );
+
+    case "cylinder-page":
+      return (
+        <Cylinder width={(width * 24) / 100} height={(width * 24) / 100} color={colors.SECONDARY_BLUE}/>
       );
 
     case "cone":

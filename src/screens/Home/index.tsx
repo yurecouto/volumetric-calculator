@@ -23,7 +23,7 @@ export default function Home() {
         {
           title: t("Cylinder"),
           svg: <SVG title="cylinder"/>,
-          calculator: "sphere"
+          calculator: "Cylinder"
         },
         {
           title: t("Cone"),

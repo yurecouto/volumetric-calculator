@@ -1,5 +1,6 @@
 {
   "InitialShapes": "Forma inicial",
+  "Measurements": "Medidas",
   "Calculate": "Calcular",
   "Circular": "Circular",
   "Triangular": "Triangular",
@@ -12,5 +13,6 @@
   "Cube": "Cubo",
   "Pyramid": "Pirâmide",
   "Hexahedron": "Hexaedro",
-  "SphereInfo": "Para calcular o volume de uma esfera, é necessário apenas uma das seguintes informações: raio, diâmetro, perímetro."
+  "SphereInfo": "Para calcular o volume de uma esfera, é necessário apenas uma das seguintes informações: raio, diâmetro, perímetro.",
+  "CylinderInfo": "Para calcular o volume de um cilindro, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura."
 }

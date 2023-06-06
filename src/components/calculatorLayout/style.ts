@@ -1,10 +1,24 @@
 import styled from 'styled-components/native';
-import colors from '../../../themes/colors';
+import colors from '../../themes/colors';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { StyleSheet } from 'react-native';
 
 interface ContainerProps {
   height?: number;
 }
+
+interface ButtonProps {
+  active?: boolean;
+}
+
+export const styles = StyleSheet.create({
+  scrollContainer: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+});
 
 export const Container = styled.View<ContainerProps>`
   width: 100%;
@@ -14,14 +28,6 @@ export const Container = styled.View<ContainerProps>`
   align-items: center;
   justify-content: space-evenly;
   padding: ${RFValue(8)}px;
-`;
-
-export const Line = styled.View`
-  width: 100%;
-  height: ${RFValue(1)}px;
-  background-color: ${colors.NOT_TOO_DARK};
-  margin-top: ${RFValue(8)}px;
-  margin-bottom: ${RFValue(8)}px;
 `;
 
 export const InputBox = styled.View`
@@ -34,6 +40,7 @@ export const InputBox = styled.View`
 
 export const SubContainer = styled.View`
   width: 100%;
+  height: 100%;
   background-color: ${colors.WHITE};
   border-radius: ${RFValue(8)}px;
   padding: ${RFValue(8)}px;
@@ -46,30 +53,38 @@ export const SubContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const Button = styled.TouchableOpacity`
+export const InferiorContainer = styled.View`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
-  height: ${RFValue(56)}px;
+`;
+
+export const Button = styled.TouchableOpacity<ButtonProps>`
+  width: 100%;
+  height: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.PRIMARY_BLUE};
+  background-color: ${(props: { active: boolean }) => props.active ? colors.PRIMARY_BLUE : colors.PRIMARY_BLUE_INACTIVE};
   border-radius: ${RFValue(8)}px;
   margin-top: ${RFValue(16)}px;
 `;
 
 export const ButtonText = styled.Text`
-  font-size: ${RFValue(24)}px;
+  font-size: ${RFValue(20)}px;
   color: ${colors.LIGHT_TEXT};
   font-weight: 600;
 `;
 
 export const InfoText = styled.Text`
-  font-size: ${RFValue(16)}px;
+  font-size: ${RFValue(14)}px;
   color: ${colors.DARK_TEXT};
   text-align: center;
   height: 100%;
-  width: 60%;
+  width: 70%;
 `;
 
 export const Title = styled.Text`
@@ -104,11 +119,9 @@ export const InfoContainer = styled.View`
   margin-bottom: 16px;
 `;
 
-export const ResultBox = styled.View`
-
-`;
 
 export const InputContainer = styled.View`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
