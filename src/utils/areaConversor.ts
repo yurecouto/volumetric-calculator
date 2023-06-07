@@ -1,4 +1,4 @@
-export function areaConversor(valor: number, unidadeAtual: string, unidadeDestino: string): number | undefined {
+export function areaConversor(valor: number, unidadeAtual: string, unidadeDestino: string): number {
   const fatoresConversao: { [key: string]: number } = {
     "mm2": 1,
     "cm2": 100,

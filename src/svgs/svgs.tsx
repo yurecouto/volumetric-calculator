@@ -91,6 +91,11 @@ export default function SVG({
         <TriangularPrism width={56} height={56} color={colors.SECONDARY_BLUE}/>
       );
 
+    case "triangular-prism-page":
+      return (
+        <TriangularPrism width={(width * 24) / 100} height={(width * 24) / 100} color={colors.SECONDARY_BLUE}/>
+      );
+
     case "square":
       return (
         <Square width={56} height={56} color={colors.SECONDARY_BLUE}/>

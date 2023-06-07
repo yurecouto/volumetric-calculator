@@ -39,12 +39,12 @@ export default function Home() {
         {
           title: t("Tetrahedron"),
           svg: <SVG title="tetrahedron"/>,
-          calculator: "sphere"
+          calculator: "Prism"
         },
         {
           title: t("Prism"),
           svg: <SVG title="triangular-prism"/>,
-          calculator: "sphere"
+          calculator: "Prism"
         },
       ]
     },

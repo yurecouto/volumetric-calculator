@@ -1,3 +1,1 @@
-colocar o box de info dentro do box principal, colocar icone de info, na mesma row do "Medidas"
-
-componentizar a estrutura do sphere e replicar
+deixar os estados "puros" e os estados de mm e demais calculos serao calculados em funcoes nao em useEffect
