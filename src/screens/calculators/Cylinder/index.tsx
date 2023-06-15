@@ -5,6 +5,11 @@ import { lengthConversor } from '../../../utils/lengthConversor';
 import { areaConversor } from '../../../utils/areaConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
 import { Line } from './style';
+import { getHmmByHeight } from '../../../utils/getHmmByHeight';
+import { getAmm2ByDiameter } from '../../../utils/getAmm2ByDiameter';
+import { getAmm2ByRay } from '../../../utils/getAmm2ByRay';
+import { getAmm2ByPerimeter } from '../../../utils/getAmm2ByPerimeter';
+import { getAmm2ByArea } from '../../../utils/getAmm2ByArea';
 
 export default function Cylinder() {
   const default1d = "mm";
@@ -38,42 +43,6 @@ export default function Cylinder() {
     }
   };
 
-  const getHmmByHeight = (h: string) => {
-    const hmm = lengthConversor(parseFloat(h), measureH, "mm")
-
-    setHmm(hmm.toString())
-  };
-
-  const getAmm2ByDiameter = (d: string) => {
-    const dmm = lengthConversor(parseFloat(d), measureD, "mm")
-
-    const area = Math.PI * Math.pow((dmm / 2), 2)
-    setAmm2(area.toString())
-    setA(areaConversor(area, "mm2", measureA)?.toString())
-  };
-
-  const getAmm2ByRay = (r: string) => {
-    const rmm = lengthConversor(parseFloat(r), measureR, "mm")
-
-    const area = Math.PI * Math.pow(rmm, 2)
-    setAmm2(area.toString())
-    setA(areaConversor(area, "mm2", measureA)?.toString())
-  };
-
-  const getAmm2ByPerimeter = (p: string) => {
-    const pmm = lengthConversor(parseFloat(p), measureP, "mm")
-
-    const area = Math.PI * Math.pow(pmm / (2 * Math.PI), 2)
-    setAmm2(area.toString())
-    setA(areaConversor(area, "mm2", measureA)?.toString())
-  };
-
-  const getAmm2ByArea = (a: string) => {
-    const area = areaConversor(parseFloat(a), measureA, "mm2")
-
-    setAmm2(area.toString())
-  };
-
   const arrangeMeasures = (measure: string, state: string) => {
     switch (state) {
       case "p":
@@ -95,13 +64,13 @@ export default function Cylinder() {
         if (a) {
           setMeasureA(measure)
           setA(areaConversor(parseFloat(a), measureA, measure)?.toString())
-          getAmm2ByArea(areaConversor(parseFloat(a), measureA, "mm2")?.toString())
+          getAmm2ByArea(areaConversor(parseFloat(a), measureA, "mm2")?.toString(), measureA, setAmm2)
         } break
       case "h":
         if (h) {
           setMeasureH(measure)
           setH(lengthConversor(parseFloat(h), measureH, measure).toString())
-          getHmmByHeight(lengthConversor(parseFloat(h), measureH, "mm").toString())
+          getHmmByHeight(lengthConversor(parseFloat(h), measureH, "mm").toString(), measureH, setHmm)
         } break
     }
   };
@@ -110,23 +79,23 @@ export default function Cylinder() {
     switch (state) {
       case "p":
         setP(value)
-        getAmm2ByPerimeter(value)
+        getAmm2ByPerimeter(value, measureP, measureA, setA, setAmm2)
         break
       case "d":
         setD(value)
-        getAmm2ByDiameter(value)
+        getAmm2ByDiameter(value, measureD, measureA, setA, setAmm2)
         break
       case "r":
         setR(value)
-        getAmm2ByRay(value)
+        getAmm2ByRay(value, measureR, measureA, setA, setAmm2)
         break
       case "a":
         setA(value)
-        getAmm2ByArea(value)
+        getAmm2ByArea(value, measureA, setAmm2)
         break
       case "h":
         setH(value)
-        getHmmByHeight(value)
+        getHmmByHeight(value, measureH, setHmm)
         break
     }
   };

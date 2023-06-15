@@ -1,1 +1,4 @@
-deixar os estados "puros" e os estados de mm e demais calculos serao calculados em funcoes nao em useEffect
+isolar as funcoes ja feitas no sphere
+
+melhorar o conversor de medidas que apresenta falhas
+
