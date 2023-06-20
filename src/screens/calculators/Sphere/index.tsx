@@ -3,18 +3,24 @@ import { useEffect, useState } from 'react';
 import { volumeConversor } from '../../../utils/volumeConversor';
 import { lengthConversor } from '../../../utils/lengthConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
+import { useTranslation } from 'react-i18next';
+import { getRmmByRay } from '../../../utils/getRmmByRay';
+import { getRmmByPerimeter } from '../../../utils/getRmmByPerimeter';
+import { getRmmByDiameter } from '../../../utils/getRmmByDiameter';
 
 export default function Sphere() {
+  const { t } = useTranslation();
+
   const default1d = "mm";
   const default3d = "mm3";
 
   const [canCalculate, setCanCalculate] = useState<boolean>(false);
 
-  const [rmm, setRmm] = useState<string | undefined>(undefined);
-  const [r, setR] = useState<string | undefined>(undefined);
-  const [p, setP] = useState<string | undefined>(undefined);
-  const [d, setD] = useState<string | undefined>(undefined);
-  const [v, setV] = useState<string | undefined>(undefined);
+  const [rmm, setRmm] = useState<number | undefined>(undefined);
+  const [r, setR] = useState<number | undefined>(undefined);
+  const [p, setP] = useState<number | undefined>(undefined);
+  const [d, setD] = useState<number | undefined>(undefined);
+  const [v, setV] = useState<number | undefined>(undefined);
 
   const [measureR, setMeasureR] = useState<string>(default1d);
   const [measureP, setMeasureP] = useState<string>(default1d);
@@ -24,34 +30,47 @@ export default function Sphere() {
 
   const calculateByRmm = () => {
     if (rmm) {
-      const volume = (4 / 3) * Math.PI * Math.pow(parseFloat(rmm), 3)
-      setV(volumeConversor(volume, default3d, measureV).toString())
+      const volume = (4 / 3) * Math.PI * Math.pow(rmm, 3)
+      setV(volumeConversor(volume, default3d, measureV))
     }
   };
 
-  useEffect(() => {
-    if (rmm !== undefined) {
-      setR(lengthConversor(parseFloat(rmm), "mm", measureR).toString())
+  const arrangeMeasures = (measure: string, state: string) => {
+    switch (state) {
+      case "p":
+        if (p) {
+          setMeasureP(measure)
+          setP(lengthConversor(p, measureP, measure))
+        } break
+      case "d":
+        if (d) {
+          setMeasureD(measure)
+          setD(lengthConversor(d, measureD, measure))
+        } break
+      case "r":
+        if (r) {
+          setMeasureR(measure)
+          setR(lengthConversor(r, measureR, measure))
+        } break
     }
-  }, [measureR])
+  };
 
-  useEffect(() => {
-    if (r !== undefined) {
-      setRmm(lengthConversor(parseFloat(r), measureR, "mm").toString())
+  const arrangeValues = (value: number, state: string) => {
+    switch (state) {
+      case "p":
+        setP(value)
+        getRmmByPerimeter(value, measureP, setRmm)
+        break
+      case "d":
+        setD(value)
+        getRmmByDiameter(value, measureD, setRmm)
+        break
+      case "r":
+        setR(value)
+        getRmmByRay(value, measureR, setRmm)
+        break
     }
-  }, [r, measureR])
-
-  useEffect(() => {
-    if (d !== undefined) {
-      setR(lengthConversor((parseFloat(d) / 2), measureD, measureR).toString())
-    }
-  }, [d, measureD])
-
-  useEffect(() => {
-    if (p !== undefined) {
-      setR(lengthConversor((parseFloat(p) / (2 * Math.PI)), measureP, measureR).toString())
-    }
-  }, [p, measureP])
+  };
 
   useEffect(() => {
     if (!(p === undefined && r === undefined && d === undefined) && !canCalculate) {
@@ -61,7 +80,7 @@ export default function Sphere() {
 
   useEffect(() => {
     if (v) {
-      setV(volumeConversor(parseFloat(v), measureOldV, measureV).toString())
+      setV(volumeConversor(v, measureOldV, measureV))
       setMeasureOldV(measureV)
     }
   }, [measureV])
@@ -74,28 +93,28 @@ export default function Sphere() {
       setMeasureVolume={setMeasureV}
       measureVolume={default3d}
       canCalculate={canCalculate}
-      volume={v}
+      volume={v?.toString()}
     >
       <Input
-        placeholder="Raio"
-        value={r}
-        setValue={setR}
+        placeholder={t("Ray")}
+        value={r?.toString()}
+        setValue={(value) => arrangeValues(value, "r")}
         measurement={measureR}
-        setMeasurement={setMeasureR}
+        setMeasurement={(measure) => arrangeMeasures(measure, "r")}
       />
       <Input
-        placeholder="Diametro"
-        value={d}
-        setValue={setD}
+        placeholder={t("Diameter")}
+        value={d?.toString()}
+        setValue={(value) => arrangeValues(value, "d")}
         measurement={measureD}
-        setMeasurement={setMeasureD}
+        setMeasurement={(measure) => arrangeMeasures(measure, "d")}
       />
       <Input
-        placeholder="Perimetro"
-        value={p}
-        setValue={setP}
+        placeholder={t("Perimeter")}
+        value={p?.toString()}
+        setValue={(value) => arrangeValues(value, "p")}
         measurement={measureP}
-        setMeasurement={setMeasureP}
+        setMeasurement={(measure) => arrangeMeasures(measure, "p")}
       />
     </CalculatorLayout>
   );

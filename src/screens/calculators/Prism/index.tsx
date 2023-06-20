@@ -6,8 +6,11 @@ import { areaConversor } from '../../../utils/areaConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
 import { Line } from './style';
 import { Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export default function Prism() {
+  const { t } = useTranslation();
+
   const default1d = "mm";
   const default2d = "mm2";
   const default3d = "mm3";
@@ -109,7 +112,7 @@ export default function Prism() {
       volume={v}
     >
       <Input
-        placeholder="Altura"
+        placeholder={t("Height")}
         value={h}
         setValue={setH}
         measurement={measureH}
@@ -117,7 +120,7 @@ export default function Prism() {
       />
       <Line/>
       <Input
-        placeholder="Area da Base"
+        placeholder={t("BaseArea")}
         value={a}
         area={true}
         setValue={setA}
@@ -125,21 +128,21 @@ export default function Prism() {
         setMeasurement={setMeasureA}
       />
       <Input
-        placeholder="Lado A"
+        placeholder={t("SideA")}
         value={sideA}
         setValue={setSideA}
         measurement={measureSideA}
         setMeasurement={setMeasureSideA}
       />
       <Input
-        placeholder="Lado B"
+        placeholder={t("SideB")}
         value={sideB}
         setValue={setSideB}
         measurement={measureSideB}
         setMeasurement={setMeasureSideB}
       />
       <Input
-        placeholder="Lado C"
+        placeholder={t("SideC")}
         value={sideC}
         setValue={setSideC}
         measurement={measureSideC}

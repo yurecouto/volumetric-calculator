@@ -10,22 +10,25 @@ import { getAmm2ByDiameter } from '../../../utils/getAmm2ByDiameter';
 import { getAmm2ByRay } from '../../../utils/getAmm2ByRay';
 import { getAmm2ByPerimeter } from '../../../utils/getAmm2ByPerimeter';
 import { getAmm2ByArea } from '../../../utils/getAmm2ByArea';
+import { useTranslation } from 'react-i18next';
 
 export default function Cylinder() {
+  const { t } = useTranslation();
+
   const default1d = "mm";
   const default2d = "mm2";
   const default3d = "mm3";
 
   const [canCalculate, setCanCalculate] = useState<boolean>(false);
 
-  const [hmm, setHmm] = useState<string | undefined>(undefined);
-  const [amm2, setAmm2] = useState<string | undefined>(undefined);
-  const [h, setH] = useState<string | undefined>(undefined);
-  const [a, setA] = useState<string | undefined>(undefined);
-  const [r, setR] = useState<string | undefined>(undefined);
-  const [p, setP] = useState<string | undefined>(undefined);
-  const [d, setD] = useState<string | undefined>(undefined);
-  const [v, setV] = useState<string | undefined>(undefined);
+  const [hmm, setHmm] = useState<number | undefined>(undefined);
+  const [amm2, setAmm2] = useState<number | undefined>(undefined);
+  const [h, setH] = useState<number | undefined>(undefined);
+  const [a, setA] = useState<number | undefined>(undefined);
+  const [r, setR] = useState<number | undefined>(undefined);
+  const [p, setP] = useState<number | undefined>(undefined);
+  const [d, setD] = useState<number | undefined>(undefined);
+  const [v, setV] = useState<number | undefined>(undefined);
 
   const [measureH, setMeasureH] = useState<string>(default1d);
   const [measureA, setMeasureA] = useState<string>(default2d);
@@ -37,9 +40,9 @@ export default function Cylinder() {
 
   const calculateByArea = () => {
     if (amm2 && hmm) {
-      const volume = parseFloat(hmm) * parseFloat(amm2)
+      const volume = hmm * amm2
 
-      setV(volumeConversor(volume, "mm3", measureV).toString())
+      setV(volumeConversor(volume, "mm3", measureV))
     }
   };
 
@@ -48,34 +51,34 @@ export default function Cylinder() {
       case "p":
         if (p) {
           setMeasureP(measure)
-          setP(lengthConversor(parseFloat(p), measureP, measure).toString())
+          setP(lengthConversor(p, measureP, measure))
         } break
       case "d":
         if (d) {
           setMeasureD(measure)
-          setD(lengthConversor(parseFloat(d), measureD, measure).toString())
+          setD(lengthConversor(d, measureD, measure))
         } break
       case "r":
         if (r) {
           setMeasureR(measure)
-          setR(lengthConversor(parseFloat(r), measureR, measure).toString())
+          setR(lengthConversor(r, measureR, measure))
         } break
       case "a":
         if (a) {
           setMeasureA(measure)
-          setA(areaConversor(parseFloat(a), measureA, measure)?.toString())
-          getAmm2ByArea(areaConversor(parseFloat(a), measureA, "mm2")?.toString(), measureA, setAmm2)
+          setA(areaConversor(a, measureA, measure))
+          getAmm2ByArea(areaConversor(a, measureA, "mm2"), measureA, setAmm2)
         } break
       case "h":
         if (h) {
           setMeasureH(measure)
-          setH(lengthConversor(parseFloat(h), measureH, measure).toString())
-          getHmmByHeight(lengthConversor(parseFloat(h), measureH, "mm").toString(), measureH, setHmm)
+          setH(lengthConversor(h, measureH, measure))
+          getHmmByHeight(lengthConversor(h, measureH, "mm"), measureH, setHmm)
         } break
     }
   };
 
-  const arrangeValues = (value: string, state: string) => {
+  const arrangeValues = (value: number, state: string) => {
     switch (state) {
       case "p":
         setP(value)
@@ -108,7 +111,7 @@ export default function Cylinder() {
 
   useEffect(() => {
     if (v) {
-      setV(volumeConversor(parseFloat(v), measureOldV, measureV).toString())
+      setV(volumeConversor(v, measureOldV, measureV))
       setMeasureOldV(measureV)
     }
   }, [measureV]);
@@ -121,41 +124,41 @@ export default function Cylinder() {
       setMeasureVolume={setMeasureV}
       measureVolume={default3d}
       canCalculate={canCalculate}
-      volume={v}
+      volume={v?.toString()}
     >
       <Input
-        placeholder="Altura"
-        value={h}
+        placeholder={t("Height")}
+        value={h?.toString()}
         setValue={(value) => arrangeValues(value, "h")}
         measurement={measureH}
         setMeasurement={(measure) => arrangeMeasures(measure, "h")}
       />
       <Line/>
       <Input
-        placeholder="Area da Base"
-        value={a !== "NaN" ? a : ""}
+        placeholder={t("BaseArea")}
+        value={a?.toString() !== "NaN" ? a?.toString() : ""}
         area={true}
         setValue={(value) => arrangeValues(value, "a")}
         measurement={measureA}
         setMeasurement={(measure) => arrangeMeasures(measure, "a")}
       />
       <Input
-        placeholder="Raio"
-        value={r}
+        placeholder={t("Ray")}
+        value={r?.toString()}
         setValue={(value) => arrangeValues(value, "r")}
         measurement={measureR}
         setMeasurement={(measure) => arrangeMeasures(measure, "r")}
       />
       <Input
-        placeholder="Diametro"
-        value={d}
+        placeholder={t("Diameter")}
+        value={d?.toString()}
         setValue={(value) => arrangeValues(value, "d")}
         measurement={measureD}
         setMeasurement={(measure) => arrangeMeasures(measure, "d")}
       />
       <Input
-        placeholder="Perimetro"
-        value={p}
+        placeholder={t("Perimeter")}
+        value={p?.toString()}
         setValue={(value) => arrangeValues(value, "p")}
         measurement={measureP}
         setMeasurement={(measure) => arrangeMeasures(measure, "p")}

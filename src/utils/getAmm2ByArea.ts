@@ -2,11 +2,11 @@ import { Dispatch, SetStateAction } from "react";
 import { areaConversor } from "./areaConversor";
 
 export const getAmm2ByArea = (
-  a: string,
+  a: number,
   measureA: string,
-  setAmm2: Dispatch<SetStateAction<string | undefined>>
+  setAmm2: Dispatch<SetStateAction<number | undefined>>
   ) => {
-  const area = areaConversor(parseFloat(a), measureA, "mm2")
+  const area = areaConversor(a, measureA, "mm2")
 
-  setAmm2(area.toString())
+  setAmm2(area)
 };

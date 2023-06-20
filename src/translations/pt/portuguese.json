@@ -16,5 +16,14 @@
   "SphereInfo": "Para calcular o volume de uma esfera, é necessário apenas uma das seguintes informações: raio, diâmetro, perímetro.",
   "CylinderInfo": "Para calcular o volume de um cilindro, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura.",
   "ConeInfo": "Para calcular o volume de um cone, é necessário uma das seguintes informações: raio, diâmetro, perímetro ou area da base, e da altura.",
-  "PrismInfo": "Para calcular o volume de um prisma, é necessário uma das seguintes informações: lados a b c, ou area da base, e da altura."
+  "PrismInfo": "Para calcular o volume de um prisma, é necessário uma das seguintes informações: lados a b c, ou area da base, e da altura.",
+
+  "BaseArea": "Área da Base",
+  "Ray": "Raio",
+  "Diameter": "Diâmetro",
+  "Perimeter": "Perímetro",
+  "Height": "Altura",
+  "SideA": "Lado A",
+  "SideB": "Lado B",
+  "SideC": "Lado C"
 }

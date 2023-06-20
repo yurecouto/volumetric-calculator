@@ -1,20 +1,77 @@
-export function volumeConversor(measure: number, originalMeasure: string, finalMeasure: string): number {
-  const convertFactor: { [key: string]: number } = {
-    "ml": 1,
-    "cl": 10,
-    "dl": 100,
-    "l": 1000,
-    "kl": 1000000,
-    "in3": 16.387064,
-    "mm3": 0.001,
-    "cm3": 1,
-    "m3": 1000000,
-    "gal": 3785.41,
-  };
+export function volumeConversor(valor: number, unidadeOriginal: string, unidadeDestino: string): number {
+  let valueL: number;
 
-  const originalFactor = convertFactor[originalMeasure];
-  const finalFactor = convertFactor[finalMeasure];
+  switch (unidadeOriginal) {
+    case "ml":
+      valueL = valor / 1000;
+      break;
+    case "cl":
+      valueL = valor / 100;
+      break;
+    case "dl":
+      valueL = valor / 10;
+      break;
+    case "l":
+      valueL = valor;
+      break;
+    case "kl":
+      valueL = valor * 1000;
+      break;
+    case "in3":
+      valueL = valor * 0.0163871;
+      break;
+    case "mm3":
+      valueL = valor / 1000000;
+      break;
+    case "cm3":
+      valueL = valor / 1000;
+      break;
+    case "m3":
+      valueL = valor * 1000;
+      break;
+    case "gal":
+      valueL = valor * 3.78541;
+      break;
+    default:
+      throw new Error("Unidade de medida original inválida.");
+  }
 
-  const convertedFactor = (measure * originalFactor) / finalFactor;
-  return convertedFactor;
+  let valorConvertido: number;
+
+  switch (unidadeDestino) {
+    case "ml":
+      valorConvertido = valueL * 1000;
+      break;
+    case "cl":
+      valorConvertido = valueL * 100;
+      break;
+    case "dl":
+      valorConvertido = valueL * 10;
+      break;
+    case "l":
+      valorConvertido = valueL;
+      break;
+    case "kl":
+      valorConvertido = valueL / 1000;
+      break;
+    case "in3":
+      valorConvertido = valueL / 0.0163871;
+      break;
+    case "mm3":
+      valorConvertido = valueL * 1000000;
+      break;
+    case "cm3":
+      valorConvertido = valueL * 1000;
+      break;
+    case "m3":
+      valorConvertido = valueL / 1000;
+      break;
+    case "gal":
+      valorConvertido = valueL / 3.78541;
+      break;
+    default:
+      throw new Error("Unidade de medida de destino inválida.");
+  }
+
+  return valorConvertido;
 }

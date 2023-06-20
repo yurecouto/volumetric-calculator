@@ -2,10 +2,10 @@ import { Dispatch, SetStateAction } from "react";
 import { lengthConversor } from "./lengthConversor";
 
 export const getHmmByHeight = (
-  h: string,
+  h: number,
   measureH: string,
-  setHmm: Dispatch<SetStateAction<string | undefined>>) => {
-  const hmm = lengthConversor(parseFloat(h), measureH, "mm")
+  setHmm: Dispatch<SetStateAction<number | undefined>>) => {
+  const hmm = lengthConversor(h, measureH, "mm")
 
-  return setHmm(hmm.toString())
+  return setHmm(hmm)
 };

@@ -5,21 +5,28 @@ import { lengthConversor } from '../../../utils/lengthConversor';
 import { areaConversor } from '../../../utils/areaConversor';
 import CalculatorLayout from '../../../components/calculatorLayout';
 import { Line } from './style';
+import { getHmmByHeight } from '../../../utils/getHmmByHeight';
+import { getAmm2ByPerimeter } from '../../../utils/getAmm2ByPerimeter';
+import { getAmm2ByDiameter } from '../../../utils/getAmm2ByDiameter';
+import { getAmm2ByRay } from '../../../utils/getAmm2ByRay';
+import { getAmm2ByArea } from '../../../utils/getAmm2ByArea';
+import { useTranslation } from 'react-i18next';
 
 export default function Cone() {
+  const { t } = useTranslation();
+
   const default1d = "mm";
   const default2d = "mm2";
   const default3d = "mm3";
 
-  const [rmm, setRmm] = useState<string | undefined>(undefined);
-  const [hmm, setHmm] = useState<string | undefined>(undefined);
-  const [amm2, setAmm2] = useState<string | undefined>(undefined);
-  const [h, setH] = useState<string | undefined>(undefined);
-  const [a, setA] = useState<string | undefined>(undefined);
-  const [r, setR] = useState<string | undefined>(undefined);
-  const [p, setP] = useState<string | undefined>(undefined);
-  const [d, setD] = useState<string | undefined>(undefined);
-  const [v, setV] = useState<string | undefined>(undefined);
+  const [hmm, setHmm] = useState<number | undefined>(undefined);
+  const [amm2, setAmm2] = useState<number | undefined>(undefined);
+  const [h, setH] = useState<number | undefined>(undefined);
+  const [a, setA] = useState<number | undefined>(undefined);
+  const [r, setR] = useState<number | undefined>(undefined);
+  const [p, setP] = useState<number | undefined>(undefined);
+  const [d, setD] = useState<number | undefined>(undefined);
+  const [v, setV] = useState<number | undefined>(undefined);
 
   const [measureH, setMeasureH] = useState<string>(default1d);
   const [measureA, setMeasureA] = useState<string>(default2d);
@@ -33,64 +40,67 @@ export default function Cone() {
 
   const calculateByArea = () => {
     if (amm2 && hmm) {
-      const volume = (parseFloat(hmm) * parseFloat(amm2)) / 3
-      setV(volumeConversor(volume, "mm3", measureV).toString())
+      const volume = (hmm * amm2) / 3
+      setV(volumeConversor(volume, "mm3", measureV))
     }
   };
 
-  useEffect(() => {
-    if (amm2 !== undefined && measureA) {
-      setA(areaConversor(parseFloat(amm2), "mm2", measureA)?.toString())
+  const arrangeMeasures = (measure: string, state: string) => {
+    switch (state) {
+      case "p":
+        if (p) {
+          setMeasureP(measure)
+          setP(lengthConversor(p, measureP, measure))
+        } break
+      case "d":
+        if (d) {
+          setMeasureD(measure)
+          setD(lengthConversor(d, measureD, measure))
+        } break
+      case "r":
+        if (r) {
+          setMeasureR(measure)
+          setR(lengthConversor(r, measureR, measure))
+        } break
+      case "a":
+        if (a) {
+          setMeasureA(measure)
+          setA(areaConversor(a, measureA, measure))
+          getAmm2ByArea(areaConversor(a, measureA, "mm2"), measureA, setAmm2)
+        } break
+      case "h":
+        if (h) {
+          setMeasureH(measure)
+          setH(lengthConversor(h, measureH, measure))
+          getHmmByHeight(lengthConversor(h, measureH, "mm"), measureH, setHmm)
+        } break
     }
-  }, [measureA]);
+  };
 
-  useEffect(() => {
-    if (amm2 !== undefined && measureA) {
-      setA(areaConversor(parseFloat(amm2), "mm2", measureA)?.toString())
+  const arrangeValues = (value: number, state: string) => {
+    switch (state) {
+      case "p":
+        setP(value)
+        getAmm2ByPerimeter(value, measureP, measureA, setA, setAmm2)
+        break
+      case "d":
+        setD(value)
+        getAmm2ByDiameter(value, measureD, measureA, setA, setAmm2)
+        break
+      case "r":
+        setR(value)
+        getAmm2ByRay(value, measureR, measureA, setA, setAmm2)
+        break
+      case "a":
+        setA(value)
+        getAmm2ByArea(value, measureA, setAmm2)
+        break
+      case "h":
+        setH(value)
+        getHmmByHeight(value, measureH, setHmm)
+        break
     }
-  }, [amm2]);
-
-  useEffect(() => {
-    if (a !== undefined && measureA) {
-      setAmm2(areaConversor(parseFloat(a), measureA, "mm2")?.toString())
-    }
-  }, [a]);
-
-  useEffect(() => {
-    if (rmm !== undefined && measureA) {
-      setAmm2((Math.PI * (parseFloat(rmm) * parseFloat(rmm))).toString())
-    }
-  }, [rmm]);
-
-  useEffect(() => {
-    if (rmm !== undefined) {
-      setR(lengthConversor(parseFloat(rmm), "mm", measureR).toString())
-    }
-  }, [measureR]);
-
-  useEffect(() => {
-    if (r !== undefined) {
-      setRmm(lengthConversor(parseFloat(r), measureR, "mm").toString())
-    }
-  }, [r, measureR]);
-
-  useEffect(() => {
-    if (h !== undefined) {
-      setHmm(lengthConversor(parseFloat(h), measureH, "mm").toString())
-    }
-  }, [h, measureH]);
-
-  useEffect(() => {
-    if (d !== undefined) {
-      setR(lengthConversor((parseFloat(d) / 2), measureD, measureR).toString())
-    }
-  }, [d, measureD]);
-
-  useEffect(() => {
-    if (p !== undefined) {
-      setR(lengthConversor((parseFloat(p) / (2 * Math.PI)), measureP, measureR).toString())
-    }
-  }, [p, measureP]);
+  };
 
   useEffect(() => {
     if (amm2 && hmm && !canCalculate) {
@@ -100,7 +110,7 @@ export default function Cone() {
 
   useEffect(() => {
     if (v) {
-      setV(volumeConversor(parseFloat(v), measureOldV, measureV).toString())
+      setV(volumeConversor(v, measureOldV, measureV))
       setMeasureOldV(measureV)
     }
   }, [measureV]);
@@ -113,41 +123,41 @@ export default function Cone() {
       setMeasureVolume={setMeasureV}
       measureVolume={default3d}
       canCalculate={canCalculate}
-      volume={v}
+      volume={v?.toString()}
     >
       <Input
-        placeholder="Altura"
-        value={h}
-        setValue={setH}
+        placeholder={t("Height")}
+        value={h?.toString()}
+        setValue={(value) => arrangeValues(value, "h")}
         measurement={measureH}
-        setMeasurement={setMeasureH}
+        setMeasurement={(measure) => arrangeMeasures(measure, "h")}
       />
       <Line/>
       <Input
-        placeholder="Area da Base"
-        value={a}
+        placeholder={t("BaseArea")}
+        value={a?.toString()}
         area={true}
         setValue={setA}
         measurement={measureA}
         setMeasurement={setMeasureA}
       />
       <Input
-        placeholder="Raio"
-        value={r}
+        placeholder={t("Ray")}
+        value={r?.toString()}
         setValue={setR}
         measurement={measureR}
         setMeasurement={setMeasureR}
       />
       <Input
-        placeholder="Diametro"
-        value={d}
+        placeholder={t("Diameter")}
+        value={d?.toString()}
         setValue={setD}
         measurement={measureD}
         setMeasurement={setMeasureD}
       />
       <Input
-        placeholder="Perimetro"
-        value={p}
+        placeholder={t("Perimeter")}
+        value={p?.toString()}
         setValue={setP}
         measurement={measureP}
         setMeasurement={setMeasureP}
